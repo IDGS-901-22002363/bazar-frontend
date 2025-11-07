@@ -1,0 +1,102 @@
+body {
+  background: #0d1117;
+  color: #e2e8f0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.page {
+  max-width: 500px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+button {
+  width: 100%;
+  background: #2563eb;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1e4fd3;
+}
+
+a {
+  color: #7eb7ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #161b22;
+  border-radius: 12px;
+  border: 1px solid #30363d;
+  margin-bottom: 1rem;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-info h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-info .price {
+  margin-top: .5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: 15px;
+}
+
+.sales-table th,
+.sales-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #2c2c2c;
+  text-align: left;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
