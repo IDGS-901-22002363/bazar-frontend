@@ -10,7 +10,7 @@ export default function Detail() {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    fetch(`${API}/api/items/${id}`)
+    fetch(`${API}/items/${id}`)
       .then(r => r.json())
       .then(data => {
         if (data.images && typeof data.images === "string") {
@@ -20,8 +20,8 @@ export default function Detail() {
       });
   }, [id]);
 
-  function comprar() {
-    fetch(`${API}/api/addSale`, {
+  function buy() {
+    fetch(`${API}/addSale`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId: Number(id), qty: Number(qty) })
@@ -40,8 +40,8 @@ export default function Detail() {
       </div>
       <p className="price">$ {item.price}</p>
       <p>{item.description}</p>
-      <input type="number" min="1" value={qty} onChange={(e) => setQty(e.target.value)} />
-      <button onClick={comprar}>Comprar</button>
+      <input type="number" min="1" value={qty} onChange={e => setQty(e.target.value)} />
+      <button onClick={buy}>Registrar compra</button>
       {msg && <p style={{ marginTop: ".8rem", textAlign: "center" }}>{msg}</p>}
     </main>
   );

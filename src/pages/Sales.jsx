@@ -5,7 +5,7 @@ export default function Sales() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch(`${API}/api/sales`)
+    fetch(`${API}/sales`)
       .then(r => r.json())
       .then(setRows);
   }, []);

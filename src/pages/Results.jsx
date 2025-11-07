@@ -1,36 +1,35 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Card from "../components/Card";
 
 const API = import.meta.env.VITE_API_URL;
 
 export default function Results() {
-  const { search } = useLocation();
-  const query = new URLSearchParams(search).get("query") || "";
+  const query = new URLSearchParams(useLocation().search).get("query") || "";
   const [items, setItems] = useState([]);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!query) return;
+    setLoading(true);
     fetch(`${API}/items?q=${encodeURIComponent(query)}`)
       .then(r => r.json())
-      .then(data => setItems(data.items || []))
-      .catch(() => setItems([]));
+      .then(data => {
+        setItems(data.items || []);
+        setCount(data.count || 0);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [query]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Resultados para: {query}</h1>
-      <p>Resultados: {items.length}</p>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))", gap: "20px" }}>
-        {items.map(p => (
-          <Link key={p.id} to={`/item/${p.id}`} style={{ textDecoration: "none", color: "white", border: "1px solid #333", borderRadius: "10px", padding: "15px" }}>
-            <img src={p.thumbnail} alt={p.title} style={{ width: "100%", borderRadius: "10px" }} />
-            <h3>{p.title}</h3>
-            <p>${p.price}</p>
-            <p>{p.category}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
+    <main className="page">
+      <h1>Resultados: {query}</h1>
+      {loading && <p>Cargando...</p>}
+      {!loading && count === 0 && <p>No se encontraron productos.</p>}
+      {items.map(item => (
+        <Card key={item.id} item={item} />
+      ))}
+    </main>
   );
 }
